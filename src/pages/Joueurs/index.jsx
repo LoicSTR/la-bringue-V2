@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
     HomeWrapper,
@@ -100,6 +100,9 @@ function Joueurs() {
         // Réinitialisez le champ de saisie et le message d'erreur
         setNouveauJoueur('');
         setErrorMessage('');
+
+        // Sauvegardez la liste des joueurs dans localStorage
+        localStorage.setItem('joueurs', JSON.stringify(updatedPlayers));
     };
 
     const handleDeletePlayer = (playerId) => {
@@ -108,6 +111,13 @@ function Joueurs() {
         );
         setJoueurs(updatedPlayers);
     };
+
+    useEffect(() => {
+        const storedPlayers = localStorage.getItem('joueurs');
+        if (storedPlayers) {
+            setJoueurs(JSON.parse(storedPlayers));
+        }
+    }, []); // Exécutez ce code une seule fois au chargement de la page
 
     return (
         <HomeWrapper>
@@ -139,6 +149,9 @@ function Joueurs() {
                     />
                     <Button type="submit">Ajouter</Button>
                 </form>
+                <a href="/partie">
+                    <Button>Jouer</Button>
+                </a>
             </HomeContainer>
         </HomeWrapper>
     );
