@@ -1,0 +1,50 @@
+const challenges = [
+    { id: 1, challenge: 'Imite une célébrité', category: '-18' },
+    { id: 2, challenge: 'Raconte une blague', category: 'Blabla' },
+    { id: 3, challenge: 'Fais 10 pompes', category: 'Sport' },
+    { id: 4, challenge: 'Chante une chanson', category: 'Musique' },
+    { id: 5, challenge: "Répète l'alphabet à l'envers", category: 'Réflexion' },
+    {
+        id: 6,
+        challenge: 'Fais un dessin les yeux fermés',
+        category: 'Créativité',
+    },
+    {
+        id: 7,
+        challenge: 'Danse comme personne ne te regarde',
+        category: 'Danse',
+    },
+    { id: 8, challenge: "Fais une déclaration d'amour", category: 'Romance' },
+    {
+        id: 9,
+        challenge: 'Donne un compliment à chaque joueur',
+        category: 'Positivité',
+    },
+    { id: 10, challenge: 'Décris ton dernier rêve', category: 'Rêve' },
+    {
+        id: 11,
+        challenge: 'Fais une grimace pendant 10 secondes',
+        category: 'Humour',
+    },
+    {
+        id: 12,
+        challenge: 'Invente une histoire en 30 secondes',
+        category: 'Créativité',
+    },
+    {
+        id: 13,
+        challenge: 'Raconte une anecdote embarrassante',
+        category: 'Blabla',
+    },
+    { id: 14, challenge: "Fais une imitation d'un animal", category: 'Humour' },
+    { id: 15, challenge: 'Fais une danse de la pluie', category: 'Danse' },
+    { id: 16, challenge: 'Raconte une superstition', category: 'Réflexion' },
+    { id: 17, challenge: 'Réalise un tour de magie', category: 'Magie' },
+    { id: 18, challenge: 'Joue au mime', category: 'Créativité' },
+    { id: 19, challenge: 'Décris ton pire cauchemar', category: 'Rêve' },
+    {
+        id: 20,
+        challenge: 'Fais une déclaration politique',
+        category: 'Réflexion',
+    },
+];
