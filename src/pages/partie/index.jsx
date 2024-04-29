@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import challenges from '../../datas/challenges.js';
-import { HomeWrapper, HomeContainer, Button } from '../../utils/style/Styles';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import challenges from '../../datas/challenges.js';
+import { HomeWrapper, Button } from '../../utils/style/Styles';
 
 const NomJoueur = styled.p`
     font-family: 'Luckiest Guy';
@@ -28,6 +29,8 @@ const ChallengeContainer = styled.div`
 const Tours = styled.p``;
 
 function Partie() {
+    const navigate = useNavigate(); // Initialisation useHistory
+
     const nbTours = 10;
     const numTour = 1;
 
@@ -50,6 +53,10 @@ function Partie() {
         setChallengePartie(challenges[indexDefiAleatoire]);
     }, []);
 
+    const handleVote = () => {
+        navigate('/vote', { state: { joueurPartie } });
+    };
+
     return (
         <HomeWrapper>
             <ChallengeContainer>
@@ -57,7 +64,9 @@ function Partie() {
                 <Challenge>
                     {challengePartie && challengePartie.challenge}
                 </Challenge>
-                <Button>Passer aux votes</Button>
+                <Button onClick={() => handleVote(joueurPartie)}>
+                    Passer aux votes
+                </Button>
             </ChallengeContainer>
             <Tours>
                 {numTour}/{nbTours}
