@@ -1,12 +1,22 @@
 import React from 'react';
 import Accueil from './pages/Accueil';
+import Joueurs from './pages/Joueurs';
+import Partie from './pages/Partie';
+
 import GlobalStyle from './utils/style/GlobalStyle';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
     return (
         <React.StrictMode>
-            <GlobalStyle />
-            <Accueil />
+            <Router>
+                <GlobalStyle />
+                <Routes>
+                    <Route path="/" element={<Accueil />} />
+                    <Route path="/joueurs" element={<Joueurs />} />
+                    <Route path="/partie" element={<Partie />} />
+                </Routes>
+            </Router>
         </React.StrictMode>
     );
 }

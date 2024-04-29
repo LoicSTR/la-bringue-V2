@@ -55,7 +55,6 @@ const ChampPseudo = styled.input`
 function Joueurs() {
     const navigate = useNavigate(); // Initialisation useHistory
 
-    // Création de la liste des joueurs vide
     const players = [];
 
     // Création du state nouveauJoueur vide
@@ -122,12 +121,12 @@ function Joueurs() {
         }
     }, []); // Exécute ce code une seule fois au chargement de la page
 
-    const handlePlay = (nbPlayer) => {
+    const handlePlay = () => {
         if (joueurs.length < 3) {
             setErrorMessage('Il doit y avoir au moins 3 joueurs pour jouer.');
             return; // Empêche le jeu de démarrer
         }
-        navigate('/partie', true);
+        navigate('/partie');
     };
 
     return (
