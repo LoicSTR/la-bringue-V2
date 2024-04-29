@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import challenges from '../../datas/challenges.js';
-import { HomeWrapper, HomeContainer } from '../../utils/style/Styles';
+import { HomeWrapper, HomeContainer, Button } from '../../utils/style/Styles';
 import styled from 'styled-components';
 
 const NomJoueur = styled.p`
@@ -14,7 +14,23 @@ const Challenge = styled.p`
     margin: 0px;
 `;
 
+const ChallengeContainer = styled.div`
+    height: 60vh;
+    margin: 30px;
+    padding: 60px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+`;
+
+const Tours = styled.p``;
+
 function Partie() {
+    const nbTours = 10;
+    const numTour = 1;
+
     const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
 
     const [joueurPartie, setJoueurPartie] = useState(null);
@@ -36,12 +52,16 @@ function Partie() {
 
     return (
         <HomeWrapper>
-            <HomeContainer>
+            <ChallengeContainer>
                 <NomJoueur>{joueurPartie && joueurPartie.username}</NomJoueur>
                 <Challenge>
                     {challengePartie && challengePartie.challenge}
                 </Challenge>
-            </HomeContainer>
+                <Button>Passer aux votes</Button>
+            </ChallengeContainer>
+            <Tours>
+                {numTour}/{nbTours}
+            </Tours>
         </HomeWrapper>
     );
 }
