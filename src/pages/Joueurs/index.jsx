@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
     HomeWrapper,
@@ -52,6 +53,8 @@ const ChampPseudo = styled.input`
 `;
 
 function Joueurs() {
+    const navigate = useNavigate(); // Initialisation useHistory
+
     // Création de la liste des joueurs vide
     const players = [];
 
@@ -66,7 +69,7 @@ function Joueurs() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Vérifiez si le champ de saisie n'est pas vide
+        // Vérifie si le champ de saisie n'est pas vide
         if (nouveauJoueur.trim() === '') {
             setErrorMessage(
                 "Le champ est vide. Impossible d'ajouter le joueur."
@@ -74,7 +77,7 @@ function Joueurs() {
             return; // Ne continuez pas avec l'ajout du joueur
         }
 
-        // Vérifiez si le pseudo est déjà utilisé
+        // Vérifie si le pseudo est déjà utilisé
         const isUsernameTaken = joueurs.some(
             (player) => player.username === nouveauJoueur
         );
@@ -82,26 +85,26 @@ function Joueurs() {
             setErrorMessage(
                 'Ce pseudo est déjà utilisé. Veuillez en choisir un autre.'
             );
-            return; // Ne continuez pas avec l'ajout du joueur
+            return; // Ne continue pas avec l'ajout du joueur
         }
 
-        // Créez un nouvel objet pour le nouveau joueur
+        // Crée un nouvel objet pour le nouveau joueur
         const newPlayer = {
             id: joueurs.length + 1,
             username: nouveauJoueur,
         };
 
-        // Ajoutez le nouveau joueur à la liste existante
+        // Ajoute le nouveau joueur à la liste existante
         const updatedPlayers = [...joueurs, newPlayer];
 
-        // Mettez à jour l'état de la liste des joueurs
+        // Mettre à jour l'état de la liste des joueurs
         setJoueurs(updatedPlayers);
 
-        // Réinitialisez le champ de saisie et le message d'erreur
+        // Réinitialise le champ de saisie et le message d'erreur
         setNouveauJoueur('');
         setErrorMessage('');
 
-        // Sauvegardez la liste des joueurs dans localStorage
+        // Sauvegarde la liste des joueurs dans localStorage
         localStorage.setItem('joueurs', JSON.stringify(updatedPlayers));
     };
 
@@ -117,7 +120,15 @@ function Joueurs() {
         if (storedPlayers) {
             setJoueurs(JSON.parse(storedPlayers));
         }
-    }, []); // Exécutez ce code une seule fois au chargement de la page
+    }, []); // Exécute ce code une seule fois au chargement de la page
+
+    const handlePlay = (nbPlayer) => {
+        if (joueurs.length < 3) {
+            setErrorMessage('Il doit y avoir au moins 3 joueurs pour jouer.');
+            return; // Empêche le jeu de démarrer
+        }
+        navigate('/partie', true);
+    };
 
     return (
         <HomeWrapper>
@@ -149,9 +160,11 @@ function Joueurs() {
                     />
                     <Button type="submit">Ajouter</Button>
                 </form>
-                <a href="/partie">
-                    <Button>Jouer</Button>
-                </a>
+                {/* <a href="/partie"> */}
+                <Button onClick={() => handlePlay(joueurs.length)}>
+                    Jouer
+                </Button>
+                {/* </a> */}
             </HomeContainer>
         </HomeWrapper>
     );
