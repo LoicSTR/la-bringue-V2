@@ -29,31 +29,31 @@ const ChallengeContainer = styled.div`
 const Tours = styled.p``;
 
 function Partie() {
-    const navigate = useNavigate(); // Initialisation useHistory
+    const navigate = useNavigate(); // Initialisation useNavigate
 
     const nbTours = 10;
     const numTour = 1;
-
-    const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
 
     const [joueurPartie, setJoueurPartie] = useState(null);
     const [challengePartie, setChallengePartie] = useState(null);
 
     useEffect(() => {
-        // Tirage au sort d'un joueur
-        const indexJoueurAleatoire = Math.floor(
-            Math.random() * joueursStockes.length
-        );
-        setJoueurPartie(joueursStockes[indexJoueurAleatoire]);
+        const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
 
-        // Tirage au sort d'un défi
-        const indexDefiAleatoire = Math.floor(
-            Math.random() * challenges.length
-        );
-        setChallengePartie(challenges[indexDefiAleatoire]);
+        if (joueursStockes && joueursStockes.length > 0) {
+            const randomPlayerIndex = Math.floor(
+                Math.random() * joueursStockes.length
+            );
+            setJoueurPartie(joueursStockes[randomPlayerIndex]);
+
+            const randomChallengeIndex = Math.floor(
+                Math.random() * challenges.length
+            );
+            setChallengePartie(challenges[randomChallengeIndex]);
+        }
     }, []);
 
-    const handleVote = () => {
+    const handleClick = () => {
         navigate('/vote', { state: { joueurPartie } });
     };
 
@@ -64,7 +64,7 @@ function Partie() {
                 <Challenge>
                     {challengePartie && challengePartie.challenge}
                 </Challenge>
-                <Button onClick={() => handleVote(joueurPartie)}>
+                <Button onClick={() => handleClick(joueurPartie)}>
                     Passer aux votes
                 </Button>
             </ChallengeContainer>

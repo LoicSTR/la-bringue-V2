@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
     HomeWrapper,
     HomeContainer,
@@ -12,9 +13,9 @@ function Accueil() {
             <HomeContainer>
                 <Title>La Bringue</Title>
                 <SubTitle>Défiez-vous, jugez-vous, éclatez-vous !</SubTitle>
-                <a href="/joueurs">
+                <Link to="/joueurs">
                     <Button>Jouer</Button>
-                </a>
+                </Link>
             </HomeContainer>
         </HomeWrapper>
     );
