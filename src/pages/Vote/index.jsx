@@ -9,14 +9,19 @@ function Vote() {
 
     const [numJoueurVote, setNumJoueurVote] = useState(1);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [votes, setVotes] = useState([]);
+
     const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
 
     const currentPlayer = joueursStockes[currentIndex];
     const totalJoueursVote = joueursStockes.length - 1;
 
     const handleVote = (vote) => {
+        const updatedVotes = [...votes, vote];
+        setVotes(updatedVotes);
+
         if (currentIndex === totalJoueursVote) {
-            navigate('/resultats', { state: { vote } });
+            navigate('/resultats', { state: { votes: updatedVotes } });
         } else {
             setCurrentIndex((prevIndex) => prevIndex + 1);
             setNumJoueurVote((prevIndex) => prevIndex + 1);
