@@ -53,9 +53,13 @@ function Partie() {
         }
     }, []);
 
+    localStorage.setItem('joueurPartie', JSON.stringify(joueurPartie));
+
     const handleClick = () => {
-        navigate('/vote', { state: { joueurPartie } });
+        navigate('/vote');
     };
+
+    // { state: { joueurPartie }
 
     return (
         <HomeWrapper>
@@ -64,9 +68,7 @@ function Partie() {
                 <Challenge>
                     {challengePartie && challengePartie.challenge}
                 </Challenge>
-                <Button onClick={() => handleClick(joueurPartie)}>
-                    Passer aux votes
-                </Button>
+                <Button onClick={() => handleClick()}>Passer aux votes</Button>
             </ChallengeContainer>
             <Tours>
                 {numTour}/{nbTours}

@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, HomeWrapper } from '../../utils/style/Styles';
 
 function Vote() {
-    const location = useLocation();
     const navigate = useNavigate();
-    const joueurPartie = location.state?.joueurPartie;
+    const joueurPartie = JSON.parse(localStorage.getItem('joueurPartie'));
 
     const [numJoueurVote, setNumJoueurVote] = useState(1);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,18 +14,24 @@ function Vote() {
 
     const currentPlayer = joueursStockes[currentIndex];
     const totalJoueursVote = joueursStockes.length - 1;
-
+    let nextIndex = currentIndex + 1;
     const handleVote = (vote) => {
         const updatedVotes = [...votes, vote];
         setVotes(updatedVotes);
 
         if (currentIndex === totalJoueursVote) {
-            navigate('/resultats', { state: { votes: updatedVotes } });
+            localStorage.setItem('votes', JSON.stringify(updatedVotes));
+            navigate('/resultats');
         } else {
-            setCurrentIndex((prevIndex) => prevIndex + 1);
-            setNumJoueurVote((prevIndex) => prevIndex + 1);
+            while (joueursStockes[nextIndex].id === joueurPartie.id) {
+                nextIndex++;
+            }
+            setCurrentIndex(nextIndex);
+            setNumJoueurVote(numJoueurVote + 1);
         }
     };
+    console.log('Joueur actif :', currentPlayer.id);
+    console.log('Id actif :', currentIndex);
 
     if (currentPlayer && currentPlayer.id !== joueurPartie.id) {
         return (
@@ -44,8 +49,9 @@ function Vote() {
             </HomeWrapper>
         );
     } else {
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-        return <Vote />;
+        nextIndex++;
+        setCurrentIndex(nextIndex);
+        navigate('/vote');
     }
 }
 
