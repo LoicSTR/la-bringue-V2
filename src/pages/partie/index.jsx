@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Challenge from '../../components/Challenge';
 import Vote from '../../components/Vote';
 import Resultats from '../../components/Resultats';
+import { Button, HomeWrapper, Title } from '../../utils/style/Styles';
 
 function Partie() {
-    const nbTours = 10;
+    const nbTours = 3;
     const [manche, setManche] = useState(1);
 
     const savedPhase = localStorage.getItem('phase');
@@ -12,7 +14,6 @@ function Partie() {
     useEffect(() => {
         localStorage.setItem('phase', JSON.stringify(phase));
     }, [phase]);
-    console.log(phase.phase);
 
     let phaseComponent;
     if (phase === 1) {
@@ -22,21 +23,40 @@ function Partie() {
     } else {
         phaseComponent = (
             <Resultats
-                phase={phase}
                 setPhase={setPhase}
                 increaseManche={() => setManche((prevManche) => prevManche + 1)}
+                nbTours={nbTours}
+                manche={manche}
+                setManche={setManche}
             />
         );
     }
+    console.log(manche);
+    console.log(nbTours);
 
-    return (
-        <div>
-            {phaseComponent}
+    if (manche === nbTours + 1) {
+        setManche(1);
+        return (
+            <HomeWrapper>
+                <Title>Fin de la partie</Title>
+                <Link to="/partie">
+                    <Button>Rejouer</Button>
+                </Link>
+                <Link to="/joueurs">
+                    <Button>Modifier les joueurs</Button>
+                </Link>
+            </HomeWrapper>
+        );
+    } else {
+        return (
             <div>
-                Manche {manche}/{nbTours}
+                {phaseComponent}
+                <div>
+                    Manche {manche}/{nbTours}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Partie;

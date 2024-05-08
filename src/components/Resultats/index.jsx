@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, HomeWrapper, SubTitle, Title } from '../../utils/style/Styles';
 import { Jauge, PourcentageFill, Pourcentage, Consequence } from './styles.jsx';
 
-function Resultats({ phase, setPhase, increaseManche }) {
+function Resultats({ setPhase, increaseManche, nbTours, manche, setManche }) {
     const votesStockes = JSON.parse(localStorage.getItem('votes'));
     const joueurPartie = JSON.parse(localStorage.getItem('joueurPartie'));
     const username = joueurPartie ? joueurPartie.username : 'Joueur inconnu';
@@ -23,6 +24,11 @@ function Resultats({ phase, setPhase, increaseManche }) {
         localStorage.removeItem('joueurPartie');
         setPhase(1);
         increaseManche();
+    };
+
+    const handleClick2 = () => {
+        setManche(1);
+        setPhase(1);
     };
 
     return (
@@ -50,7 +56,18 @@ function Resultats({ phase, setPhase, increaseManche }) {
                     <Pourcentage>{pourcentageOui.toFixed(0)}%</Pourcentage>
                 </PourcentageFill>
             </Jauge>
-            <Button onClick={() => handleClick()}>Manche suivante</Button>
+            {manche < nbTours ? (
+                <Button onClick={() => handleClick()}>Manche suivante</Button>
+            ) : (
+                <div>
+                    <Link to="/partie">
+                        <Button onClick={() => handleClick2()}>Rejouer</Button>
+                    </Link>
+                    <Link to="/joueurs">
+                        <Button>Modifier les joueurs</Button>
+                    </Link>
+                </div>
+            )}
         </HomeWrapper>
     );
 }
