@@ -5,7 +5,7 @@ import Resultats from '../../components/Resultats';
 
 function Partie() {
     const nbTours = 10;
-    const manche = 1;
+    const [manche, setManche] = useState(1);
 
     const savedPhase = localStorage.getItem('phase');
     const [phase, setPhase] = useState(savedPhase ? JSON.parse(savedPhase) : 1);
@@ -20,7 +20,13 @@ function Partie() {
     } else if (phase === 2) {
         phaseComponent = <Vote phase={phase} setPhase={setPhase} />;
     } else {
-        phaseComponent = <Resultats phase={phase} setPhase={setPhase} />;
+        phaseComponent = (
+            <Resultats
+                phase={phase}
+                setPhase={setPhase}
+                increaseManche={() => setManche((prevManche) => prevManche + 1)}
+            />
+        );
     }
 
     return (

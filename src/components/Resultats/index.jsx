@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, HomeWrapper, SubTitle, Title } from '../../utils/style/Styles';
 import { Jauge, PourcentageFill, Pourcentage, Consequence } from './styles.jsx';
 
-function Resultats({ phase, setPhase }) {
+function Resultats({ phase, setPhase, increaseManche }) {
     const votesStockes = JSON.parse(localStorage.getItem('votes'));
     const joueurPartie = JSON.parse(localStorage.getItem('joueurPartie'));
     const username = joueurPartie ? joueurPartie.username : 'Joueur inconnu';
@@ -22,6 +22,7 @@ function Resultats({ phase, setPhase }) {
     const handleClick = () => {
         localStorage.removeItem('joueurPartie');
         setPhase(1);
+        increaseManche();
     };
 
     return (
