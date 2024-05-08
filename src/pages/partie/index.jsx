@@ -1,79 +1,35 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import challenges from '../../datas/challenges.js';
-import { HomeWrapper, Button } from '../../utils/style/Styles';
-
-const NomJoueur = styled.p`
-    font-family: 'Luckiest Guy';
-    font-size: 50px;
-    margin: 10px;
-`;
-
-const Challenge = styled.p`
-    font-size: 30px;
-    margin: 0px;
-`;
-
-const ChallengeContainer = styled.div`
-    height: 60vh;
-    margin: 30px;
-    padding: 60px 90px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-`;
-
-const Tours = styled.p``;
+import Challenge from '../../components/Challenge';
+import Vote from '../../components/Vote';
+import Resultats from '../../components/Resultats';
 
 function Partie() {
-    const navigate = useNavigate(); // Initialisation useNavigate
-
     const nbTours = 10;
-    const numTour = 1;
+    const manche = 1;
 
-    const [joueurPartie, setJoueurPartie] = useState(null);
-    const [challengePartie, setChallengePartie] = useState(null);
-
+    const savedPhase = localStorage.getItem('phase');
+    const [phase, setPhase] = useState(savedPhase ? JSON.parse(savedPhase) : 1);
     useEffect(() => {
-        const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
+        localStorage.setItem('phase', JSON.stringify(phase));
+    }, [phase]);
+    console.log(phase.phase);
 
-        if (joueursStockes && joueursStockes.length > 0) {
-            const randomPlayerIndex = Math.floor(
-                Math.random() * joueursStockes.length
-            );
-            setJoueurPartie(joueursStockes[randomPlayerIndex]);
-
-            const randomChallengeIndex = Math.floor(
-                Math.random() * challenges.length
-            );
-            setChallengePartie(challenges[randomChallengeIndex]);
-        }
-    }, []);
-
-    localStorage.setItem('joueurPartie', JSON.stringify(joueurPartie));
-
-    const handleClick = () => {
-        navigate('/vote');
-    };
-
-    // { state: { joueurPartie }
+    let phaseComponent;
+    if (phase === 1) {
+        phaseComponent = <Challenge phase={phase} setPhase={setPhase} />;
+    } else if (phase === 2) {
+        phaseComponent = <Vote phase={phase} setPhase={setPhase} />;
+    } else {
+        phaseComponent = <Resultats phase={phase} setPhase={setPhase} />;
+    }
 
     return (
-        <HomeWrapper>
-            <ChallengeContainer>
-                <NomJoueur>{joueurPartie && joueurPartie.username}</NomJoueur>
-                <Challenge>
-                    {challengePartie && challengePartie.challenge}
-                </Challenge>
-                <Button onClick={() => handleClick()}>Passer aux votes</Button>
-            </ChallengeContainer>
-            <Tours>
-                {numTour}/{nbTours}
-            </Tours>
-        </HomeWrapper>
+        <div>
+            {phaseComponent}
+            <div>
+                Manche {manche}/{nbTours}
+            </div>
+        </div>
     );
 }
 

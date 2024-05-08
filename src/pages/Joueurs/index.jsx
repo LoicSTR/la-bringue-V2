@@ -1,56 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import {
     HomeWrapper,
     HomeContainer,
     Title,
     Button,
 } from '../../utils/style/Styles';
-
-const CardContainer = styled.div`
-    display: flex;
-    flex: row wrap;
-    margin-top: 50px;
-`;
-const CardJoueur = styled.div`
-    font-size: 20px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: space-around;
-    background-color: #b52616;
-    padding: 5px 5px 5px 20px;
-    margin: 10px;
-    border-radius: 20px;
-`;
-
-const SupprJoueur = styled.button`
-    font-size: 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 20px;
-    margin-left: 15px;
-    border: none;
-    background-color: #b52616;
-
-    &:hover {
-        background-color: #f4442e;
-    }
-`;
-
-const ChampPseudo = styled.input`
-    font-size: 20px;
-    border-radius: 20px;
-    padding: 5px 20px;
-    margin-right: 20px;
-    border: none;
-`;
+import {
+    CardContainer,
+    CardJoueur,
+    SupprJoueur,
+    ChampPseudo,
+} from './styles.jsx';
 
 function Joueurs() {
     const navigate = useNavigate(); // Initialisation useHistory
