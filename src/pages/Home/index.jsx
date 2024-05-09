@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
     HomeWrapper,
@@ -7,13 +8,13 @@ import {
     Button,
 } from '../../utils/style/Styles';
 
-function Accueil() {
+function Home() {
     return (
         <HomeWrapper>
             <HomeContainer>
                 <Title>La Bringue</Title>
                 <SubTitle>Défiez-vous, jugez-vous, éclatez-vous !</SubTitle>
-                <Link to="/joueurs">
+                <Link to="/players">
                     <Button>Jouer</Button>
                 </Link>
             </HomeContainer>
@@ -21,4 +22,4 @@ function Accueil() {
     );
 }
 
-export default Accueil;
+export default Home;

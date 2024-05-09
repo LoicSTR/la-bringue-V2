@@ -2,41 +2,40 @@ import { useState } from 'react';
 import { Button, HomeWrapper } from '../../utils/style/Styles';
 
 function Vote({ phase, setPhase }) {
-    const joueurPartie = JSON.parse(localStorage.getItem('joueurPartie'));
-    const joueursVote = JSON.parse(localStorage.getItem('joueursVote'));
+    const selectedPlayer = JSON.parse(localStorage.getItem('selectedPlayer'));
+    const votingPlayers = JSON.parse(localStorage.getItem('votingPlayers'));
 
-    const [numJoueurVote, setNumJoueurVote] = useState(1);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentVoteIndex, setCurrentVoteIndex] = useState(0);
     const [votes, setVotes] = useState([]);
 
-    const totalJoueursVote = joueursVote.length;
-    const currentPlayer = joueursVote[currentIndex];
+    const totalPlayersToVote = votingPlayers.length;
+    const currentPlayerToVote = votingPlayers[currentVoteIndex];
 
     const handleVote = (vote) => {
-        let nextIndex = currentIndex + 1;
+        const nextIndex = currentVoteIndex + 1;
         const updatedVotes = [...votes, vote];
         setVotes(updatedVotes);
 
-        if (currentIndex === totalJoueursVote - 1) {
+        if (currentVoteIndex === totalPlayersToVote - 1) {
             localStorage.setItem('votes', JSON.stringify(updatedVotes));
             const updatedPhase = phase + 1;
             setPhase(updatedPhase);
         } else {
-            setCurrentIndex(nextIndex);
-            setNumJoueurVote(numJoueurVote + 1);
+            setCurrentVoteIndex(nextIndex);
         }
     };
 
     return (
         <HomeWrapper>
-            <h1>{currentPlayer.username}</h1>
+            <h1>{currentPlayerToVote.username}</h1>
             <div>
-                La réalisation de {joueurPartie.username} t'a-t-elle convaincu ?
+                La réalisation de {selectedPlayer.username} t'a-t-elle convaincu
+                ?
             </div>
-            <Button onClick={() => handleVote('oui')}>Oui</Button>
-            <Button onClick={() => handleVote('non')}>Non</Button>
+            <Button onClick={() => handleVote('yes')}>Oui</Button>
+            <Button onClick={() => handleVote('no')}>Non</Button>
             <div>
-                {numJoueurVote}/{totalJoueursVote}
+                {currentVoteIndex + 1}/{totalPlayersToVote}
             </div>
         </HomeWrapper>
     );

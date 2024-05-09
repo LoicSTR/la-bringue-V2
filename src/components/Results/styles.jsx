@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Jauge = styled.div`
+export const Gauge = styled.div`
     margin-top: 40px;
     width: 80px;
     height: 300px;
@@ -10,7 +10,7 @@ export const Jauge = styled.div`
     border-radius: 20px;
 `;
 
-export const PourcentageFill = styled.div`
+export const PercentageFill = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
@@ -21,10 +21,10 @@ export const PourcentageFill = styled.div`
     background-color: #b52616;
     border-radius: 20px;
     transition: height 0.5s ease;
-    height: ${(props) => props.$pourcentageOui}%;
+    height: ${(props) => props.$percentageYes}%;
 `;
 
-export const Pourcentage = styled.p`
+export const Percentage = styled.p`
     color: white;
     font-family: 'Luckiest Guy', cursive;
     font-size: 20px;
@@ -33,17 +33,17 @@ export const Pourcentage = styled.p`
     text-align: center;
 `;
 
-export const Consequence = styled.p`
+export const Outcome = styled.p`
     font-size: 20px;
     text-align: center;
     margin-top: 20px;
     ${(props) =>
-        props.$pourcentageOui >= 50 &&
+        props.$percentageYes >= 50 &&
         `
         color: green;
     `}
     ${(props) =>
-        props.$pourcentageOui < 50 &&
+        props.$percentageYes < 50 &&
         `
         color: red;
     `}

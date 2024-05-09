@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
     flex: row wrap;
     margin-top: 50px;
 `;
-export const CardJoueur = styled.div`
+export const CardPlayer = styled.div`
     font-size: 20px;
     color: white;
     display: flex;
@@ -18,7 +18,7 @@ export const CardJoueur = styled.div`
     border-radius: 20px;
 `;
 
-export const SupprJoueur = styled.button`
+export const DeletePlayerButton = styled.button`
     font-size: 20px;
     color: white;
     display: flex;
@@ -36,7 +36,7 @@ export const SupprJoueur = styled.button`
     }
 `;
 
-export const ChampPseudo = styled.input`
+export const PlayerInput = styled.input`
     font-size: 20px;
     border-radius: 20px;
     padding: 5px 20px;

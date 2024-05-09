@@ -1,45 +1,45 @@
 import { useState, useEffect } from 'react';
-import challenges from '../../datas/challenges.js';
+import challenges from '../../datas/challenges.js'; // Assuming this is where your challenge data is stored
 import { HomeWrapper, Button } from '../../utils/style/Styles';
-import { ChallengeContainer, ChallengeText, NomJoueur } from './styles.jsx';
+import { ChallengeContainer, ChallengeText, PlayerName } from './styles.jsx'; // Renamed components
 
 function Challenge({ phase, setPhase }) {
     console.log(phase);
 
-    const [joueurPartie, setJoueurPartie] = useState(null);
-    const [challengePartie, setChallengePartie] = useState(null);
+    const [selectedPlayer, setSelectedPlayer] = useState(null); // Renamed from joueurPartie
+    const [selectedChallenge, setSelectedChallenge] = useState(null); // Renamed from challengePartie
 
     useEffect(() => {
-        const joueursStockes = JSON.parse(localStorage.getItem('joueurs'));
+        const storedPlayers = JSON.parse(localStorage.getItem('players'));
 
-        if (joueursStockes && joueursStockes.length > 0) {
+        if (storedPlayers && storedPlayers.length > 0) {
             const randomPlayerIndex = Math.floor(
-                Math.random() * joueursStockes.length
+                Math.random() * storedPlayers.length
             );
-            const joueurSelectionne = joueursStockes[randomPlayerIndex];
+            const chosenPlayer = storedPlayers[randomPlayerIndex];
 
-            // Filtrer les joueurs pour exclure le joueur sélectionné
-            const nouveauxJoueurs = joueursStockes.filter(
-                (joueur) => joueur !== joueurSelectionne
+            // Filter out the selected player from the list
+            const votingPlayers = storedPlayers.filter(
+                (player) => player !== chosenPlayer
             );
 
             const randomChallengeIndex = Math.floor(
                 Math.random() * challenges.length
             );
 
-            setJoueurPartie(joueurSelectionne);
-            setChallengePartie(challenges[randomChallengeIndex]);
+            setSelectedPlayer(chosenPlayer);
+            setSelectedChallenge(challenges[randomChallengeIndex]);
 
             localStorage.setItem(
-                'joueursVote',
-                JSON.stringify(nouveauxJoueurs)
+                'votingPlayers',
+                JSON.stringify(votingPlayers)
             );
         }
     }, []);
 
-    localStorage.setItem('joueurPartie', JSON.stringify(joueurPartie));
+    localStorage.setItem('selectedPlayer', JSON.stringify(selectedPlayer));
 
-    const handleClick = () => {
+    const handleNextPhase = () => {
         const updatedPhase = phase + 1;
         setPhase(updatedPhase);
     };
@@ -47,11 +47,15 @@ function Challenge({ phase, setPhase }) {
     return (
         <HomeWrapper>
             <ChallengeContainer>
-                <NomJoueur>{joueurPartie && joueurPartie.username}</NomJoueur>
+                <PlayerName>
+                    {selectedPlayer && selectedPlayer.username}
+                </PlayerName>
                 <ChallengeText>
-                    {challengePartie && challengePartie.challenge}
+                    {selectedChallenge && selectedChallenge.challenge}
                 </ChallengeText>
-                <Button onClick={() => handleClick()}>Passer aux votes</Button>
+                <Button onClick={() => handleNextPhase()}>
+                    Passer aux votes
+                </Button>
             </ChallengeContainer>
         </HomeWrapper>
     );

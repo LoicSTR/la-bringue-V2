@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NomJoueur = styled.p`
+export const PlayerName = styled.p`
     font-family: 'Luckiest Guy';
     font-size: 50px;
     margin: 10px;

@@ -1,13 +1,12 @@
 import React from 'react';
-import Accueil from './pages/Accueil';
-import Joueurs from './pages/Joueurs';
-import Partie from './pages/Partie';
-import Challenge from './components/Challenge';
-import Vote from './components/Vote';
-import Resultats from './components/Resultats';
-
-import GlobalStyle from './utils/style/GlobalStyle';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import GlobalStyle from './utils/style/GlobalStyle';
+import Home from './pages/Home'; // Renamed from Accueil
+import Players from './pages/Players'; // Renamed from Joueurs
+import Game from './pages/Game'; // Renamed from Partie
+import Challenge from './components/Challenge'; // Renamed from Challenge
+import Vote from './components/Vote'; // Renamed from Vote
+import Results from './components/Results'; // Renamed from Resultats
 
 function App() {
     return (
@@ -15,16 +14,16 @@ function App() {
             <Router>
                 <GlobalStyle />
                 <Routes>
-                    <Route path="/" element={<Accueil />} />
-                    <Route path="/joueurs" element={<Joueurs />} />
-                    <Route path="/partie/*" element={<Partie />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/players" element={<Players />} />
+                    <Route path="/game/*" element={<Game />} />
                     <Route
-                        path="/partie/challenge"
+                        path="/game/challenge"
                         exact
                         element={<Challenge />}
                     />
-                    <Route path="/partie/vote" element={<Vote />} />
-                    <Route path="/partie/resultats" element={<Resultats />} />
+                    <Route path="/game/vote" element={<Vote />} />
+                    <Route path="/game/results" element={<Results />} />
                 </Routes>
             </Router>
         </React.StrictMode>
