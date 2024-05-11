@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import Header from '../../components/Header';
 import Challenge from '../../components/Challenge';
 import Vote from '../../components/Vote';
 import Results from '../../components/Results';
+import { HomeWrapper } from '../../utils/style/Styles';
+import { RoundContainer } from './styles.jsx';
 
 function Game() {
     const totalRounds = 3;
@@ -37,13 +40,17 @@ function Game() {
             />
         );
     }
+
+    const showAlert = true;
+
     return (
-        <div>
-            {phaseComponent}
-            <div>
+        <HomeWrapper>
+            <Header showAlert={showAlert} />
+            <RoundContainer>
                 Manche {currentRound}/{totalRounds}
-            </div>
-        </div>
+            </RoundContainer>
+            {phaseComponent}
+        </HomeWrapper>
     );
 }
 

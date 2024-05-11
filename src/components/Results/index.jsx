@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, HomeWrapper, SubTitle, Title } from '../../utils/style/Styles';
+import {
+    Button,
+    HomeContainer,
+    SubTitle,
+    Title,
+    ButtonContainer,
+} from '../../utils/style/Styles';
 import { Gauge, PercentageFill, Percentage, Outcome } from './styles.jsx'; // Renamed components
 
 function Results({
@@ -48,7 +54,7 @@ function Results({
     };
 
     return (
-        <HomeWrapper>
+        <HomeContainer>
             <Title>{username}</Title>
             <SubTitle>
                 votre prestation a satisfait {percentageYes.toFixed(0)}% des
@@ -73,18 +79,24 @@ function Results({
                 </PercentageFill>
             </Gauge>
             {currentRound < totalRounds ? (
-                <Button onClick={() => handleNextRound()}>
-                    Prochaine manche
-                </Button>
+                <ButtonContainer>
+                    <Button onClick={() => handleNextRound()}>
+                        Prochaine manche
+                    </Button>
+                </ButtonContainer>
             ) : (
-                <div>
-                    <Button onClick={() => handleRestartGame()}>Rejouer</Button>
+                <ButtonContainer>
+                    <div>
+                        <Button onClick={() => handleRestartGame()}>
+                            Rejouer
+                        </Button>
+                    </div>
                     <Button onClick={() => handleChangePlayers()}>
                         Changer les joueurs
                     </Button>
-                </div>
+                </ButtonContainer>
             )}
-        </HomeWrapper>
+        </HomeContainer>
     );
 }
 

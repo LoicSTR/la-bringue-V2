@@ -5,13 +5,17 @@ import {
     HomeContainer,
     Title,
     Button,
+    ButtonContainer,
 } from '../../utils/style/Styles';
 import {
     CardContainer,
     CardPlayer,
     DeletePlayerButton,
     PlayerInput,
+    ErrorContainer,
+    NewPlayerForm,
 } from './styles.jsx';
+import Header from '../../components/Header';
 
 function Players() {
     const navigate = useNavigate();
@@ -65,9 +69,7 @@ function Players() {
         if (storedPlayers) {
             setPlayers(JSON.parse(storedPlayers));
         }
-        console.log('Joueurs enregistré :', storedPlayers);
     }, []);
-    console.log('Joueurs :', players);
 
     const handleDeletePlayer = (playerId) => {
         const updatedPlayers = players.filter(
@@ -86,8 +88,11 @@ function Players() {
         navigate('/game');
     };
 
+    // const showAlert = false;
+
     return (
         <HomeWrapper>
+            <Header />
             <HomeContainer>
                 <Title>Qui sont nos bringueurs du jour ?</Title>
                 <CardContainer>
@@ -102,12 +107,12 @@ function Players() {
                         </CardPlayer>
                     ))}
                 </CardContainer>
-                <div>
+                <ErrorContainer>
                     {errorMessage && (
                         <div style={{ color: 'red' }}>{errorMessage}</div>
                     )}
-                </div>
-                <form onSubmit={handleSubmit}>
+                </ErrorContainer>
+                <NewPlayerForm onSubmit={handleSubmit}>
                     <PlayerInput
                         type="text"
                         placeholder="Nouveau joueur"
@@ -115,10 +120,12 @@ function Players() {
                         onChange={(e) => setNewPlayer(e.target.value)}
                     />
                     <Button type="submit">Ajouter</Button>
-                </form>
-                <Button onClick={() => handleStartGame(players.length)}>
-                    Jouer
-                </Button>
+                </NewPlayerForm>
+                <ButtonContainer>
+                    <Button onClick={() => handleStartGame(players.length)}>
+                        C'est parti !
+                    </Button>
+                </ButtonContainer>
             </HomeContainer>
         </HomeWrapper>
     );

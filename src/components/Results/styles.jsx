@@ -1,13 +1,19 @@
 import styled from 'styled-components';
+import colors from '../../utils/style/colors';
 
 export const Gauge = styled.div`
     margin-top: 40px;
-    width: 80px;
-    height: 300px;
+    width: 70px;
+    height: 200px;
     padding: 5px;
-    background-color: #f4442e;
+    background-color: ${colors.secondary};
     position: relative;
     border-radius: 20px;
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 425px) {
+        margin-top: 20px;
+    }
 `;
 
 export const PercentageFill = styled.div`
@@ -18,7 +24,7 @@ export const PercentageFill = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: #b52616;
+    background-color: ${colors.primary};
     border-radius: 20px;
     transition: height 0.5s ease;
     height: ${(props) => props.$percentageYes}%;
@@ -31,6 +37,7 @@ export const Percentage = styled.p`
     position: absolute;
     top: 0;
     text-align: center;
+    margin-top: 10px;
 `;
 
 export const Outcome = styled.p`
@@ -47,4 +54,10 @@ export const Outcome = styled.p`
         `
         color: red;
     `}
+
+    @media screen and (max-width: 425px) {
+        font-size: 16px;
+        margin-top: 14px;
+        margin-bottom: 0px;
+    }
 `;

@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { Button, HomeWrapper } from '../../utils/style/Styles';
+import {
+    Title,
+    SubTitle,
+    Button,
+    HomeContainer,
+} from '../../utils/style/Styles';
+import { VoteContainer, VoteIndexContainer } from './styles';
 
 function Vote({ phase, setPhase }) {
     const selectedPlayer = JSON.parse(localStorage.getItem('selectedPlayer'));
@@ -26,18 +32,21 @@ function Vote({ phase, setPhase }) {
     };
 
     return (
-        <HomeWrapper>
-            <h1>{currentPlayerToVote.username}</h1>
-            <div>
+        <HomeContainer>
+            <Title>{currentPlayerToVote.username}</Title>
+            <SubTitle>
                 La réalisation de {selectedPlayer.username} t'a-t-elle convaincu
                 ?
-            </div>
-            <Button onClick={() => handleVote('yes')}>Oui</Button>
-            <Button onClick={() => handleVote('no')}>Non</Button>
-            <div>
-                {currentVoteIndex + 1}/{totalPlayersToVote}
-            </div>
-        </HomeWrapper>
+            </SubTitle>
+            <VoteContainer>
+                <Button onClick={() => handleVote('yes')}>Oui</Button>
+                <Button onClick={() => handleVote('no')}>Non</Button>
+            </VoteContainer>
+
+            <VoteIndexContainer>
+                - Vote {currentVoteIndex + 1} sur {totalPlayersToVote} -
+            </VoteIndexContainer>
+        </HomeContainer>
     );
 }
 

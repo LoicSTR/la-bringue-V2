@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import challenges from '../../datas/challenges.js'; // Assuming this is where your challenge data is stored
-import { HomeWrapper, Button } from '../../utils/style/Styles';
-import { ChallengeContainer, ChallengeText, PlayerName } from './styles.jsx'; // Renamed components
+import {
+    Button,
+    ButtonContainer,
+    Title,
+    SubTitle,
+    HomeContainer,
+} from '../../utils/style/Styles';
+// import { ChallengeContainer, ChallengeText, PlayerName } from './styles.jsx'; // Renamed components
 
 function Challenge({ phase, setPhase }) {
     console.log(phase);
@@ -45,19 +51,17 @@ function Challenge({ phase, setPhase }) {
     };
 
     return (
-        <HomeWrapper>
-            <ChallengeContainer>
-                <PlayerName>
-                    {selectedPlayer && selectedPlayer.username}
-                </PlayerName>
-                <ChallengeText>
-                    {selectedChallenge && selectedChallenge.challenge}
-                </ChallengeText>
+        <HomeContainer>
+            <Title>{selectedPlayer && selectedPlayer.username}</Title>
+            <SubTitle>
+                {selectedChallenge && selectedChallenge.challenge}
+            </SubTitle>
+            <ButtonContainer>
                 <Button onClick={() => handleNextPhase()}>
                     Passer aux votes
                 </Button>
-            </ChallengeContainer>
-        </HomeWrapper>
+            </ButtonContainer>
+        </HomeContainer>
     );
 }
 

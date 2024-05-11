@@ -6,6 +6,7 @@ import {
     Title,
     SubTitle,
     Button,
+    ButtonContainer,
 } from '../../utils/style/Styles';
 
 function Home() {
@@ -14,9 +15,11 @@ function Home() {
             <HomeContainer>
                 <Title>La Bringue</Title>
                 <SubTitle>Défiez-vous, jugez-vous, éclatez-vous !</SubTitle>
-                <Link to="/players">
-                    <Button>Jouer</Button>
-                </Link>
+                <ButtonContainer>
+                    <Link to="/players">
+                        <Button>Jouer</Button>
+                    </Link>
+                </ButtonContainer>
             </HomeContainer>
         </HomeWrapper>
     );
