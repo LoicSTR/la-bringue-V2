@@ -88,8 +88,6 @@ function Players() {
         navigate('/game');
     };
 
-    // const showAlert = false;
-
     return (
         <HomeWrapper>
             <Header />

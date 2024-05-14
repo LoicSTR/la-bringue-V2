@@ -1,59 +1,112 @@
 const challenges = [
-    { id: 1, challenge: 'imite une célébrité.', category: '-18' },
-    { id: 2, challenge: 'raconte une blague.', category: 'blabla' },
-    { id: 3, challenge: 'fais 10 pompes.', category: 'sport' },
-    { id: 4, challenge: 'chante une chanson.', category: 'musique' },
+    // Catégorie Blabla
     {
-        id: 5,
-        challenge: "répète l'alphabet à l'envers.",
-        category: 'réflexion',
+        id: 1,
+        challenge: 'raconte ton premier baiser.',
+        category: 'Raconte-moi tout',
     },
     {
+        id: 2,
+        challenge: 'partage une habitude étrange que tu as.',
+        category: 'Raconte-moi tout',
+    },
+    {
+        id: 3,
+        challenge: 'décris ton rêve le plus fou.',
+        category: 'Raconte-moi tout',
+    },
+    {
+        id: 4,
+        challenge: 'révèle ton secret le plus drôle.',
+        category: 'Raconte-moi tout',
+    },
+    {
+        id: 5,
+        challenge: 'Quelle est ta plus grande peur ?',
+        category: 'Raconte-moi tout',
+    },
+
+    // Catégorie Imitation
+    {
         id: 6,
-        challenge: 'fais un dessin les yeux fermés.',
-        category: 'créativité',
+        challenge: 'imite une personnalité politique.',
+        category: "Qui j'imite ?",
     },
     {
         id: 7,
-        challenge: 'danse comme personne ne te regarde.',
-        category: 'danse',
+        challenge: 'imite un membre du groupe.',
+        category: "Qui j'imite ?",
     },
-    { id: 8, challenge: "fais une déclaration d'amour.", category: 'romance' },
+    {
+        id: 8,
+        challenge: 'imite une scène célèbre de film.',
+        category: "Qui j'imite ?",
+    },
     {
         id: 9,
-        challenge: 'donne un compliment à chaque joueur.',
-        category: 'positivité',
+        challenge: 'imite un animal de manière hilarante.',
+        category: "Qui j'imite ?",
     },
-    { id: 10, challenge: 'décris ton dernier rêve.', category: 'rêve' },
+    {
+        id: 10,
+        challenge: "imite la voix d'une célébrité.",
+        category: "Qui j'imite ?",
+    },
+
+    // Catégorie -18
     {
         id: 11,
-        challenge: 'fais une grimace pendant 10 secondes.',
-        category: 'humour',
+        challenge: 'montre ta pire danse du ventre.',
+        category: 'Olé olé',
     },
     {
         id: 12,
-        challenge: 'invente une histoire en 30 secondes.',
-        category: 'créativité',
+        challenge: "fais une imitation sexy d'un objet.",
+        category: 'Olé olé',
     },
     {
         id: 13,
-        challenge: 'raconte une anecdote embarrassante.',
-        category: 'blabla',
+        challenge: "décris ta dernière soirée où tu t'es vraiment lâché(e).",
+        category: 'Olé olé',
     },
     {
         id: 14,
-        challenge: "fais une imitation d'un animal.",
-        category: 'humour',
+        challenge: 'montre ta technique de flirt la plus absurde.',
+        category: 'Olé olé',
     },
-    { id: 15, challenge: 'fais une danse de la pluie.', category: 'danse' },
-    { id: 16, challenge: 'raconte une superstition.', category: 'réflexion' },
-    { id: 17, challenge: 'réalise un tour de magie.', category: 'magie' },
-    { id: 18, challenge: 'joue au mime.', category: 'créativité' },
-    { id: 19, challenge: 'décris ton pire cauchemar.', category: 'rêve' },
+    {
+        id: 15,
+        challenge: "fais une déclaration d'amour à un objet inanimé.",
+        category: 'Olé olé',
+    },
+
+    // Catégorie Ridicule
+    {
+        id: 16,
+        challenge: 'danse la macarena comme si tu étais possédé(e).',
+        category: 'Le ridicule ne tue pas',
+    },
+    {
+        id: 17,
+        challenge:
+            'chante "Joyeux anniversaire" à la personne la plus âgée du groupe avec une voix d\'opéra.',
+        category: 'Le ridicule ne tue pas',
+    },
+    {
+        id: 18,
+        challenge:
+            "fais semblant d'être un super-héros et invente un nom et un super-pouvoir.",
+        category: 'Le ridicule ne tue pas',
+    },
+    {
+        id: 19,
+        challenge: 'marche comme un mannequin sur un podium invisible.',
+        category: 'Le ridicule ne tue pas',
+    },
     {
         id: 20,
-        challenge: 'fais une déclaration politique.',
-        category: 'réflexion',
+        challenge: 'imite une poule qui danse sur de la musique disco.',
+        category: 'Le ridicule ne tue pas',
     },
 ];
 

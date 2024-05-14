@@ -1,7 +1,14 @@
-import { HeaderContainer, HomeIconContainer, HomeIcon } from './styles.jsx';
+import {
+    HeaderContainer,
+    HomeIconContainer,
+    HomeIcon,
+    SettingsIconContainer,
+} from './styles.jsx';
 import HomeIconImg from '../../assets/home-icon.png';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ showAlert }) {
+    const navigate = useNavigate();
     const handleHomeClick = () => {
         if (showAlert) {
             const confirmMessage =
@@ -14,9 +21,18 @@ function Header({ showAlert }) {
             window.location.href = '/';
         }
     };
+
+    const handleSettingsClick = () => {
+        navigate('/settings');
+    };
+
     return (
         <HeaderContainer>
             <p>La Bringue, par Loïc Souêtre</p>
+
+            <SettingsIconContainer onClick={handleSettingsClick}>
+                Settings
+            </SettingsIconContainer>
             <HomeIconContainer onClick={handleHomeClick}>
                 <HomeIcon src={HomeIconImg}></HomeIcon>
             </HomeIconContainer>
