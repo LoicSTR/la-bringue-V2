@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/la-bringue-V2/static/js/main.af7e7075.js",
+    "main.js": "/la-bringue-V2/static/js/main.bd21b32f.js",
     "index.html": "/la-bringue-V2/index.html",
-    "main.af7e7075.js.map": "/la-bringue-V2/static/js/main.af7e7075.js.map"
+    "main.bd21b32f.js.map": "/la-bringue-V2/static/js/main.bd21b32f.js.map"
   },
   "entrypoints": [
-    "static/js/main.af7e7075.js"
+    "static/js/main.bd21b32f.js"
   ]
 }
