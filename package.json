@@ -2,7 +2,7 @@
     "name": "la-bringue-v2",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://loicstr.github.io/la-bringue-V2/",
+    "homepage": "https://loicstr.github.io/la-bringue-V2",
     "dependencies": {
         "cra-template-cats": "1.1.4",
         "react": "^18.2.0",
@@ -16,7 +16,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "deploy": "npm run build && gh-pages -d build"
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
