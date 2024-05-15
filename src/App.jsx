@@ -9,6 +9,7 @@ import Game from './pages/Game';
 function App() {
     return (
         <React.StrictMode>
+            <div>Test</div>
             <HashRouter>
                 <GlobalStyle />
                 <Routes>
